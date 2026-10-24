@@ -1,0 +1,500 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EUR/USD Forex Analysis Terminal (NPT)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', system-ui, -apple-system, sans-serif; user-select: none; }
+    .glass { background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12); }
+    .glass-card { background: rgba(30, 41, 59, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(51, 65, 85, 0.8); border-radius: 3px; }
+    .draggable-hud { position: absolute; z-index: 40; cursor: default; }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden text-sm">
+
+  <!-- Header / Top Navigation -->
+  <header class="h-14 bg-slate-900 border-b border-slate-800 px-4 flex items-center justify-between z-30 shrink-0">
+    <div class="flex items-center space-x-3">
+      <div class="flex items-center space-x-2 bg-rose-600/20 border border-rose-500/30 px-2.5 py-1 rounded-md">
+        <i class="fa-solid fa-chart-line text-rose-400"></i>
+        <span class="font-bold tracking-wide text-white">EUR/USD</span>
+        <span class="text-xs text-rose-400 font-mono font-semibold">1.12000</span>
+        <span class="text-[10px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded ml-1">OANDA</span>
+      </div>
+      <div class="hidden md:flex items-center space-x-2 text-xs bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700">
+        <i class="fa-regular fa-clock text-emerald-400"></i>
+        <span class="text-slate-400">Nepal Time (NPT):</span>
+        <span id="npt-clock" class="text-emerald-400 font-mono font-semibold">--:--:--</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs (Scrollable) -->
+    <nav class="flex items-center space-x-1 bg-slate-950/60 p-1 rounded-lg border border-slate-800 overflow-x-auto custom-scrollbar max-w-xl">
+      <button onclick="switchTab('chart')" id="tab-chart" class="px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm shrink-0">
+        <i class="fa-solid fa-chart-candlestick"></i>
+        <span>Chart & Setup</span>
+      </button>
+      <button onclick="switchTab('topdown')" id="tab-topdown" class="px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800 shrink-0">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Top-Down Matrix</span>
+      </button>
+      <button onclick="switchTab('fundamental')" id="tab-fundamental" class="px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800 shrink-0">
+        <i class="fa-solid fa-globe"></i>
+        <span>Macro & Fundamentals</span>
+      </button>
+      <button onclick="switchTab('alerts')" id="tab-alerts" class="px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800 shrink-0">
+        <i class="fa-solid fa-bell"></i>
+        <span>Alerts</span>
+        <span class="bg-blue-500 text-white text-[10px] px-1.5 py-0.2 rounded-full font-bold">3</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- NPT Session Indicator Banner -->
+  <div class="bg-slate-950 border-b border-slate-800 px-4 py-1.5 flex items-center justify-between text-xs overflow-x-auto custom-scrollbar shrink-0">
+    <div class="flex items-center space-x-3 min-w-max">
+      <span class="text-slate-400 font-medium text-[11px] uppercase tracking-wider flex items-center">
+        <i class="fa-solid fa-earth-asia text-slate-400 mr-1.5"></i>
+        NPT Trading Sessions (UTC+5:45):
+      </span>
+      <div id="session-asian" class="flex items-center space-x-1.5 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">
+        <span class="w-2 h-2 rounded-full bg-slate-500" id="dot-asian"></span>
+        <span class="text-slate-300 font-medium">Asian (05:45 - 14:45):</span>
+        <span class="text-slate-400 text-[11px]" id="status-asian">Checking...</span>
+      </div>
+      <div id="session-london" class="flex items-center space-x-1.5 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">
+        <span class="w-2 h-2 rounded-full bg-slate-500" id="dot-london"></span>
+        <span class="text-slate-300 font-medium">London (13:45 - 22:15):</span>
+        <span class="text-slate-400 text-[11px]" id="status-london">Checking...</span>
+      </div>
+      <div id="session-ny" class="flex items-center space-x-1.5 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">
+        <span class="w-2 h-2 rounded-full bg-slate-500" id="dot-ny"></span>
+        <span class="text-slate-300 font-medium">New York (18:45 - 02:45):</span>
+        <span class="text-slate-400 text-[11px]" id="status-ny">Checking...</span>
+      </div>
+      <div id="session-overlap" class="flex items-center space-x-1.5 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">
+        <span class="w-2 h-2 rounded-full bg-slate-500" id="dot-overlap"></span>
+        <span class="text-slate-300 font-medium">NY/London Overlap (18:45 - 22:15):</span>
+        <span class="text-slate-400 text-[11px]" id="status-overlap">Checking...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main View Area -->
+  <main class="flex-1 relative overflow-hidden">
+
+    <!-- CHART & SETUP VIEW -->
+    <div id="view-chart" class="w-full h-full relative flex flex-col">
+      <!-- Top Target Bar (Today's Short Setup) -->
+      <div class="bg-slate-900/90 border-b border-slate-800 px-4 py-2 flex items-center justify-between text-xs z-10 shrink-0">
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-1.5">
+            <span class="text-emerald-400 font-bold">TP:</span>
+            <span class="font-mono text-emerald-300 font-bold">1.11550</span>
+            <span class="text-[10px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40 font-mono">+45.0 Pips</span>
+          </div>
+          <div class="flex items-center space-x-1.5">
+            <span class="text-rose-400 font-bold">ENTRY:</span>
+            <span class="font-mono text-rose-300 font-bold">1.12000</span>
+          </div>
+          <div class="flex items-center space-x-1.5">
+            <span class="text-rose-400 font-bold">SL:</span>
+            <span class="font-mono text-rose-300 font-bold">1.12300</span>
+            <span class="text-[10px] text-rose-400 bg-rose-950/60 px-1.5 py-0.5 rounded border border-rose-800/40 font-mono">-30.0 Pips</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-[11px] font-bold">
+            <i class="fa-solid fa-circle-check mr-1"></i>STATUS: ACTIVE & VALID
+          </span>
+          <span class="text-slate-400 text-[11px]">RRR: <strong class="text-emerald-400">1:1.50</strong></span>
+        </div>
+      </div>
+
+      <!-- TradingView Widget & Overlays -->
+      <div class="flex-1 w-full h-full relative overflow-hidden">
+        <!-- TradingView Widget -->
+        <iframe class="w-full h-full border-0" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=OANDA%3AEURUSD&interval=15&symboledit=1&saveimage=1&toolbarbg=0f172a&studies=%5B%5D&theme=dark&style=1&timezone=Etc%2FUTC"></iframe>
+
+        <!-- Movable Floating Trade HUD Overlay (Short Setup Theme) -->
+        <div id="trade-hud" class="draggable-hud" style="top: 20px; right: 20px;">
+          <!-- Expanded View -->
+          <div id="hud-expanded" class="glass rounded-xl w-80 shadow-2xl overflow-hidden border border-rose-500/30">
+            <div id="hud-header" class="bg-slate-800/90 px-4 py-2.5 border-b border-slate-700/60 flex items-center justify-between cursor-move">
+              <div class="flex items-center space-x-2">
+                <span class="bg-rose-500/20 text-rose-400 border border-rose-500/40 text-[10px] font-bold px-2 py-0.5 rounded">SHORT EXECUTION</span>
+                <span class="text-xs font-bold text-slate-100">Trade Execution HUD</span>
+              </div>
+              <button onclick="toggleHudMinimize()" class="text-slate-400 hover:text-white p-1 transition-colors" title="Minimize HUD">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+            </div>
+            
+            <div class="p-3 space-y-2.5 text-xs max-h-[80vh] overflow-y-auto custom-scrollbar">
+              
+              <!-- Trade Status & Validity -->
+              <div class="bg-emerald-950/40 border border-emerald-500/40 p-2 rounded-lg flex items-center justify-between">
+                <div class="flex items-center space-x-1.5">
+                  <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span class="text-emerald-300 font-bold text-[11px]">Trade Status: ACTIVE & VALID</span>
+                </div>
+                <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-mono">1:1.50 RRR</span>
+              </div>
+
+              <!-- Key Price Levels -->
+              <div class="grid grid-cols-3 gap-1.5">
+                <div class="bg-rose-500/10 border border-rose-500/30 p-2 rounded text-center">
+                  <div class="text-[10px] text-rose-400 font-medium">SL Price</div>
+                  <div class="font-mono font-bold text-rose-300 text-xs mt-0.5">1.12300</div>
+                  <div class="text-[9px] text-rose-400/80 font-mono">-30 pips</div>
+                </div>
+                <div class="bg-slate-800/80 border border-slate-700 p-2 rounded text-center">
+                  <div class="text-[10px] text-slate-300 font-medium">Entry Limit</div>
+                  <div class="font-mono font-bold text-slate-100 text-xs mt-0.5">1.12000</div>
+                  <div class="text-[9px] text-slate-400 font-mono">Sell Zone</div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 p-2 rounded text-center">
+                  <div class="text-[10px] text-emerald-400 font-medium">TP Target</div>
+                  <div class="font-mono font-bold text-emerald-300 text-xs mt-0.5">1.11550</div>
+                  <div class="text-[9px] text-emerald-400/80 font-mono">+45 pips</div>
+                </div>
+              </div>
+
+              <!-- Actionable Entry Details -->
+              <div class="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800 space-y-1.5">
+                <div class="text-[11px] font-bold text-slate-200 flex items-center justify-between border-b border-slate-800 pb-1">
+                  <span class="flex items-center"><i class="fa-solid fa-right-to-bracket text-blue-400 mr-1.5"></i>When to Enter</span>
+                  <span class="text-[10px] text-slate-400 font-normal">Active Windows</span>
+                </div>
+                <div class="text-[11px] text-slate-300 space-y-1">
+                  <div class="flex items-start space-x-1.5">
+                    <i class="fa-solid fa-chevron-right text-blue-400 text-[9px] mt-1"></i>
+                    <span><strong>Primary:</strong> Sell Limit order set at <strong>1.12000</strong> during active London or NY sessions.</span>
+                  </div>
+                  <div class="flex items-start space-x-1.5">
+                    <i class="fa-solid fa-chevron-right text-blue-400 text-[9px] mt-1"></i>
+                    <span><strong>Confirmation:</strong> Enter on M15 bearish engulfing candle or Market Structure Shift (MSS) closing below <strong>1.11950</strong>.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actionable Exit Rules -->
+              <div class="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800 space-y-1.5">
+                <div class="text-[11px] font-bold text-slate-200 flex items-center justify-between border-b border-slate-800 pb-1">
+                  <span class="flex items-center"><i class="fa-solid fa-right-from-bracket text-rose-400 mr-1.5"></i>When to Exit</span>
+                  <span class="text-[10px] text-slate-400 font-normal">Risk Protocol</span>
+                </div>
+                <div class="text-[11px] text-slate-300 space-y-1">
+                  <div class="flex items-start space-x-1.5">
+                    <i class="fa-solid fa-bullseye text-emerald-400 text-[9px] mt-1"></i>
+                    <span><strong>Take Profit (TP):</strong> Target <strong>1.11550</strong>. Take 80% partial profit & move SL to Breakeven at <strong>1.11750</strong>.</span>
+                  </div>
+                  <div class="flex items-start space-x-1.5">
+                    <i class="fa-solid fa-shield-halved text-rose-400 text-[9px] mt-1"></i>
+                    <span><strong>Stop Loss (SL):</strong> Hard exit at <strong>1.12300</strong> (15 pips above H1 FVG high).</span>
+                  </div>
+                  <div class="flex items-start space-x-1.5">
+                    <i class="fa-solid fa-clock text-amber-400 text-[9px] mt-1"></i>
+                    <span><strong>Time Exit:</strong> Exit prior to Friday market close or high-impact US CPI/NFP news releases.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Trade Invalidation Criteria -->
+              <div class="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                <div class="text-[11px] font-bold text-rose-400 flex items-center space-x-1 border-b border-slate-800 pb-1">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  <span>Invalidation Conditions</span>
+                </div>
+                <p class="text-[10.5px] text-slate-400 leading-relaxed">
+                  Cancel trade if H1 candle closes above <strong>1.12350</strong> or if price reaches <strong>1.11550</strong> before triggering entry at 1.12000.
+                </p>
+              </div>
+
+            </div>
+
+            <div class="px-3.5 py-2 bg-slate-900/80 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800">
+              <span class="text-[11px]">Execution Timeframe</span>
+              <span class="font-bold text-slate-200">M15 Chart</span>
+            </div>
+          </div>
+
+          <!-- Minimized View -->
+          <div id="hud-minimized" onclick="toggleHudMinimize()" class="hidden glass rounded-full px-4 py-2 shadow-2xl flex items-center space-x-3 cursor-pointer hover:bg-slate-800/95 transition-all border border-rose-500/40">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+            </span>
+            <span class="text-xs font-bold text-rose-400">SHORT EURUSD</span>
+            <span class="text-xs font-mono text-slate-300">1.12000</span>
+            <span class="text-[10px] text-emerald-400 font-mono">TP: 1.11550</span>
+            <i class="fa-solid fa-expand text-slate-400 text-xs hover:text-white"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOP-DOWN MATRIX VIEW -->
+    <div id="view-topdown" class="hidden w-full h-full p-6 overflow-y-auto custom-scrollbar space-y-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-bold text-slate-100 flex items-center space-x-2">
+          <i class="fa-solid fa-layer-group text-blue-400"></i>
+          <span>Multi-Timeframe Technical Matrix (Top-Down)</span>
+        </h2>
+        <span class="bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs px-2.5 py-1 rounded-md font-bold">Overall Alignment: Bearish Continuation</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card p-4 rounded-xl space-y-3 border-l-4 border-l-rose-500">
+          <div class="flex justify-between items-center"><span class="font-bold text-slate-200">D1 (Daily)</span><span class="text-xs bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded font-bold">BEARISH</span></div>
+          <p class="text-xs text-slate-400 leading-relaxed">Corrective downward phase following rejection near major daily supply. Price currently testing key multi-week swing support near 1.1160 - 1.1180.</p>
+          <div class="text-[11px] text-slate-300 font-mono bg-slate-900/60 p-2 rounded">Key Level: 1.1160 Support</div>
+        </div>
+        <div class="glass-card p-4 rounded-xl space-y-3 border-l-4 border-l-rose-500">
+          <div class="flex justify-between items-center"><span class="font-bold text-slate-200">H4 (4-Hour)</span><span class="text-xs bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded font-bold">BEARISH</span></div>
+          <p class="text-xs text-slate-400 leading-relaxed">Lower highs confirmed over recent sessions. Compressing into a tight consolidation floor above 1.1180, setting up potential liquidity sweep.</p>
+          <div class="text-[11px] text-slate-300 font-mono bg-slate-900/60 p-2 rounded">Key Level: 1.1235 High</div>
+        </div>
+        <div class="glass-card p-4 rounded-xl space-y-3 border-l-4 border-l-rose-500">
+          <div class="flex justify-between items-center"><span class="font-bold text-slate-200">H1 (1-Hour)</span><span class="text-xs bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded font-bold">BEARISH</span></div>
+          <p class="text-xs text-slate-400 leading-relaxed">Descending channel active. H1 Fair Value Gap (FVG) overhead at 1.1220 - 1.1235 provides strong institutional resistance confluence.</p>
+          <div class="text-[11px] text-slate-300 font-mono bg-slate-900/60 p-2 rounded">Key FVG: 1.1220 - 1.1235</div>
+        </div>
+        <div class="glass-card p-4 rounded-xl space-y-3 border-l-4 border-l-emerald-500">
+          <div class="flex justify-between items-center"><span class="font-bold text-slate-200">M15 (Execution)</span><span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-bold">EXECUTION READY</span></div>
+          <p class="text-xs text-slate-400 leading-relaxed">Pullback into M15 supply zone complete. Execution entry set at 1.12000 for sell continuation toward lower liquidity pools.</p>
+          <div class="text-[11px] text-emerald-300 font-mono bg-emerald-950/40 p-2 rounded border border-emerald-800/40">Entry Limit: 1.12000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MACRO & FUNDAMENTALS VIEW -->
+    <div id="view-fundamental" class="hidden w-full h-full p-6 overflow-y-auto custom-scrollbar space-y-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-bold text-slate-100 flex items-center space-x-2">
+          <i class="fa-solid fa-globe text-blue-400"></i>
+          <span>Fundamental Analysis & Macro Engine</span>
+        </h2>
+        <span class="bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs px-2.5 py-1 rounded-md font-bold">Macro Sentiment: Bearish Euro (-62%)</span>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="glass-card p-5 rounded-xl space-y-3">
+          <h3 class="font-semibold text-slate-200 border-b border-slate-700/60 pb-2 flex items-center justify-between">
+            <span>ECB Policy Outlook</span>
+            <i class="fa-solid fa-landmark text-slate-400"></i>
+          </h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Persistent sluggish regional growth and fiscal concerns in major Eurozone economies continue to weigh heavily on the single currency, limiting structural EUR rallies.</p>
+        </div>
+        <div class="glass-card p-5 rounded-xl space-y-3">
+          <h3 class="font-semibold text-slate-200 border-b border-slate-700/60 pb-2 flex items-center justify-between">
+            <span>Federal Reserve & DXY</span>
+            <i class="fa-solid fa-dollar-sign text-emerald-400"></i>
+          </h3>
+          <p class="text-xs text-slate-400 leading-relaxed">A firmer US Dollar along with safe-haven inflows keeps the Greenback supported against major pairs, reinforcing the broader bearish bias for EUR/USD.</p>
+        </div>
+        <div class="glass-card p-5 rounded-xl space-y-3">
+          <h3 class="font-semibold text-slate-200 border-b border-slate-700/60 pb-2 flex items-center justify-between">
+            <span>Macro Risk Rules</span>
+            <i class="fa-solid fa-shield-cat text-amber-400"></i>
+          </h3>
+          <ul class="space-y-2 text-xs text-slate-300">
+            <li class="flex justify-between items-center bg-slate-900/60 p-2 rounded"><span>NFP / CPI Risk:</span><span class="text-amber-400 font-semibold">Flat 30m Prior</span></li>
+            <li class="flex justify-between items-center bg-slate-900/60 p-2 rounded"><span>Weekend Risk:</span><span class="text-rose-400 font-semibold">Close Friday Night</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERTS TAB VIEW -->
+    <div id="view-alerts" class="hidden w-full h-full p-6 overflow-y-auto custom-scrollbar space-y-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-bold text-slate-100 flex items-center space-x-2">
+          <i class="fa-solid fa-bell text-blue-400"></i>
+          <span>Alerts & Signal Notifications</span>
+        </h2>
+        <button onclick="testChimeSound()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold flex items-center space-x-2 transition-all">
+          <i class="fa-solid fa-volume-high"></i>
+          <span>Test Alert Chime</span>
+        </button>
+      </div>
+      <div class="glass-card p-5 rounded-xl space-y-4">
+        <h3 class="font-semibold text-slate-200 border-b border-slate-700/60 pb-2">Active Signal Rule Toggles (EUR/USD Short Setup)</h3>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+            <div><div class="font-medium text-slate-200 text-xs">Entry Reached (1.12000)</div><div class="text-[11px] text-slate-400">Trigger alert when live price enters entry zone</div></div>
+            <input type="checkbox" checked class="w-4 h-4 accent-blue-600 rounded cursor-pointer">
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+            <div><div class="font-medium text-slate-200 text-xs">Take Profit Target Reached (1.11550)</div><div class="text-[11px] text-slate-400">Trigger audio alert when profit target is hit</div></div>
+            <input type="checkbox" checked class="w-4 h-4 accent-blue-600 rounded cursor-pointer">
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+            <div><div class="font-medium text-slate-200 text-xs">Stop Loss Hit / Invalidation (1.12300)</div><div class="text-[11px] text-slate-400">Alert if trade invalidation ceiling is breached</div></div>
+            <input type="checkbox" checked class="w-4 h-4 accent-blue-600 rounded cursor-pointer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.getElementById('view-chart').classList.add('hidden');
+      document.getElementById('view-topdown').classList.add('hidden');
+      document.getElementById('view-fundamental').classList.add('hidden');
+      document.getElementById('view-alerts').classList.add('hidden');
+
+      document.getElementById('tab-chart').className = 'px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800 shrink-0';
+      document.getElementById('tab-topdown').className = 'px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800 shrink-0';
+      document.getElementById('tab-fundamental').className = 'px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800 shrink-0';
+      document.getElementById('tab-alerts').className = 'px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800 shrink-0';
+
+      document.getElementById('view-' + tabId).classList.remove('hidden');
+      document.getElementById('tab-' + tabId).className = 'px-3 py-1.5 rounded-md font-medium text-xs flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm shrink-0';
+    }
+
+    function toggleHudMinimize() {
+      const expanded = document.getElementById('hud-expanded');
+      const minimized = document.getElementById('hud-minimized');
+      if (expanded.classList.contains('hidden')) {
+        expanded.classList.remove('hidden');
+        minimized.classList.add('hidden');
+      } else {
+        expanded.classList.add('hidden');
+        minimized.classList.remove('hidden');
+      }
+    }
+
+    // Real-Time NPT Clock & Session Engine
+    function updateNPTClock() {
+      const now = new Date();
+      // Calculate Nepal Standard Time (UTC+5:45)
+      const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const nptDate = new Date(utcTime + (345 * 60000));
+
+      const hours = nptDate.getHours();
+      const minutes = nptDate.getMinutes();
+      const seconds = nptDate.getSeconds();
+
+      document.getElementById('npt-clock').textContent = 
+        String(hours).padStart(2, '0') + ':' + 
+        String(minutes).padStart(2, '0') + ':' + 
+        String(seconds).padStart(2, '0');
+
+      const totalMins = hours * 60 + minutes;
+
+      // NPT Trading Sessions (UTC+5:45):
+      // Asian: 05:45 - 14:45 NPT (345 to 885 mins)
+      // London: 13:45 - 22:15 NPT (825 to 1335 mins)
+      // New York: 18:45 - 02:45 NPT (1125 to 165 mins next day)
+      // NY/London Overlap: 18:45 - 22:15 NPT (1125 to 1335 mins)
+      updateSessionStatus('asian', totalMins, 345, 885);
+      updateSessionStatus('london', totalMins, 825, 1335);
+      updateSessionStatus('ny', totalMins, 1125, 165);
+      updateSessionStatus('overlap', totalMins, 1125, 1335);
+    }
+
+    function updateSessionStatus(name, currentMins, startMins, endMins) {
+      let isActive = false;
+      if (startMins < endMins) {
+        isActive = (currentMins >= startMins && currentMins < endMins);
+      } else {
+        // Over midnight condition (New York session)
+        isActive = (currentMins >= startMins || currentMins < endMins);
+      }
+
+      const dot = document.getElementById('dot-' + name);
+      const status = document.getElementById('status-' + name);
+      const container = document.getElementById('session-' + name);
+
+      if (isActive) {
+        dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+        status.textContent = "Active";
+        status.className = "text-emerald-400 font-bold text-[11px]";
+        container.className = "flex items-center space-x-1.5 bg-emerald-950/40 px-2.5 py-1 rounded border border-emerald-500/40";
+      } else {
+        dot.className = "w-2 h-2 rounded-full bg-slate-500";
+        status.textContent = "Closed";
+        status.className = "text-slate-400 text-[11px]";
+        container.className = "flex items-center space-x-1.5 bg-slate-900 px-2.5 py-1 rounded border border-slate-800";
+      }
+    }
+
+    setInterval(updateNPTClock, 1000);
+    updateNPTClock();
+
+    // Draggable Logic for Trade HUD Overlay
+    let activeHud = null;
+    let startX = 0, startY = 0, initialX = 0, initialY = 0;
+
+    document.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+
+    document.addEventListener('touchstart', dragStart, {passive: true});
+    document.addEventListener('touchmove', drag, {passive: true});
+    document.addEventListener('touchend', dragEnd);
+
+    function dragStart(e) {
+      const header = e.target.closest('#hud-header');
+      if (!header) return;
+
+      activeHud = header.closest('.draggable-hud');
+      if (!activeHud) return;
+
+      startX = e.clientX || e.touches[0].clientX;
+      startY = e.clientY || e.touches[0].clientY;
+      initialX = activeHud.offsetLeft;
+      initialY = activeHud.offsetTop;
+      
+      activeHud.style.zIndex = 100;
+    }
+
+    function drag(e) {
+      if (!activeHud) return;
+      const clientX = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+      const clientY = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+
+      const dx = clientX - startX;
+      const dy = clientY - startY;
+
+      activeHud.style.left = `${initialX + dx}px`;
+      activeHud.style.top = `${initialY + dy}px`;
+      activeHud.style.right = 'auto';
+    }
+
+    function dragEnd() {
+      if (activeHud) {
+        activeHud.style.zIndex = 40;
+        activeHud = null;
+      }
+    }
+
+    function testChimeSound() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.3);
+      } catch(e) {
+        alert('Alert sound chime tested successfully!');
+      }
+    }
+  </script>
+</body>
+</html>
+```
