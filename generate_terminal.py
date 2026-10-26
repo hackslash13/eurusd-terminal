@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+from datetime import datetime
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -44,9 +45,13 @@ if response.status_code == 200:
     if not generated_html.startswith("<!DOCTYPE html>"):
         raise ValueError("Generated content does not start with <!DOCTYPE html>")
 
+    # Append a unique timestamp comment to force git diff to recognize changes
+    timestamp_comment = f"\n<!-- Auto-updated on: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC -->\n"
+    generated_html += timestamp_comment
+
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(generated_html)
-    print("index.html successfully updated and verified!")
+    print("index.html successfully updated with fresh timestamp!")
 else:
     raise Exception(f"Gemini API Error {response.status_code}: {response.text}")
     
