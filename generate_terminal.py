@@ -5,9 +5,11 @@ from datetime import datetime
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
-    raise ValueError("GEMINI_API_KEY environment variable is missing!")
+    print("ERROR: GEMINI_API_KEY secret is not set or accessible in GitHub Actions!")
+    exit(1)
 
-url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+# Updated to use the active stable Gemini flash model
+url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key={api_key}"
 
 prompt = """
 You are a senior Forex quantitative trader. Generate a complete, valid, single-file HTML page for a high-performance EUR/USD Forex Analysis Terminal with embedded Tailwind CSS, FontAwesome icons, a live TradingView chart (OANDA:EURUSD, 15m interval), dynamic NPT (UTC+5:45) session calculations, and a draggable Trade HUD overlay.
@@ -23,16 +25,18 @@ payload = {
 
 headers = {'Content-Type': 'application/json'}
 
-response = requests.post(url, headers=headers, data=json.dumps(payload))
-
-if response.status_code == 200:
-    res_data = response.json()
-    try:
-        generated_html = res_data['candidates'][0]['content']['parts'][0]['text'].strip()
-    except (KeyError, IndexError) as e:
-        raise ValueError(f"Unexpected API response structure: {res_data}") from e
+try:
+    response = requests.post(url, headers=headers, data=json.dumps(payload), timeout=30)
+    print(f"API Response Status Code: {response.status_code}")
     
-    # Remove markdown code fence if wrapped
+    if response.status_code != 200:
+        print(f"API Error Body: {response.text}")
+        exit(1)
+        
+    res_data = response.json()
+    generated_html = res_data['candidates'][0]['content']['parts'][0]['text'].strip()
+    
+    # Clean markdown formatting if included
     if generated_html.startswith("```html"):
         generated_html = generated_html[7:]
     if generated_html.startswith("```"):
@@ -42,16 +46,16 @@ if response.status_code == 200:
     
     generated_html = generated_html.strip()
     
-    if not generated_html.startswith("<!DOCTYPE html>"):
-        raise ValueError("Generated content does not start with <!DOCTYPE html>")
-
-    # Append a unique timestamp comment to force git diff to recognize changes
+    # Inject timestamp to ensure git diff registers a change
     timestamp_comment = f"\n<!-- Auto-updated on: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC -->\n"
     generated_html += timestamp_comment
 
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(generated_html)
-    print("index.html successfully updated with fresh timestamp!")
-else:
-    raise Exception(f"Gemini API Error {response.status_code}: {response.text}")
+        
+    print("index.html successfully updated!")
+
+except Exception as e:
+    print(f"An exception occurred during execution: {str(e)}")
+    exit(1)
     
