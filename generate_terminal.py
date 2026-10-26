@@ -3,6 +3,8 @@ import requests
 import json
 
 api_key = os.environ.get("GEMINI_API_KEY")
+if not api_key:
+    raise ValueError("GEMINI_API_KEY environment variable is missing!")
 
 url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
 
@@ -21,9 +23,13 @@ payload = {
 headers = {'Content-Type': 'application/json'}
 
 response = requests.post(url, headers=headers, data=json.dumps(payload))
+
 if response.status_code == 200:
     res_data = response.json()
-    generated_html = res_data['candidates'][0]['content']['parts'][0]['text'].strip()
+    try:
+        generated_html = res_data['candidates'][0]['content']['parts'][0]['text'].strip()
+    except (KeyError, IndexError) as e:
+        raise ValueError(f"Unexpected API response structure: {res_data}") from e
     
     # Remove markdown code fence if wrapped
     if generated_html.startswith("```html"):
@@ -33,9 +39,14 @@ if response.status_code == 200:
     if generated_html.endswith("```"):
         generated_html = generated_html[:-3]
     
+    generated_html = generated_html.strip()
+    
+    if not generated_html.startswith("<!DOCTYPE html>"):
+        raise ValueError("Generated content does not start with <!DOCTYPE html>")
+
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(generated_html.strip())
-    print("index.html successfully updated!")
+        f.write(generated_html)
+    print("index.html successfully updated and verified!")
 else:
-    print(f"Error generating update: {response.status_code} {response.text}")
-  
+    raise Exception(f"Gemini API Error {response.status_code}: {response.text}")
+    
