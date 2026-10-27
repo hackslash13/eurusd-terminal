@@ -2,9 +2,9 @@ name: Daily EUR/USD Terminal Auto-Update
 
 on:
   schedule:
-    # Runs at 01:15 UTC every day (7:00 AM NPT in Nepal)
+    # Runs daily at 01:15 UTC (7:00 AM NPT)
     - cron: '15 1 * * *'
-  workflow_dispatch: # Allows manual trigger anytime from GitHub UI
+  workflow_dispatch:
 
 jobs:
   update-terminal:
@@ -24,9 +24,7 @@ jobs:
       - name: Install Dependencies
         run: pip install requests
 
-      - name: Run Auto-Analysis & Update HTML
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - name: Run Local Generation Engine
         run: python generate_terminal.py
 
       - name: Commit and Push Changes
