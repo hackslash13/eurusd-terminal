@@ -4,7 +4,6 @@ from datetime import datetime
 today = datetime.utcnow()
 current_date_str = today.strftime('%B %d, %Y')
 
-# Load the comprehensive analysis.json
 try:
     with open("analysis.json", "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -15,6 +14,7 @@ except Exception as e:
 is_short = "short" in data.get("bias", "").lower() or "bear" in data.get("bias", "").lower()
 badge_class = "bg-rose-500/10 text-rose-400 border-rose-500/25" if is_short else "bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
 
+grading = data.get("trade_grading", {})
 fund = data.get("fundamental", {})
 tech = data.get("technical_top_down", {})
 rules = data.get("actionable_rules", {})
@@ -120,6 +120,18 @@ html_content = f"""<!DOCTYPE html>
                     <h2 class="text-lg font-bold text-slate-200">Execution HUD</h2>
                     <span class="px-3 py-1 rounded text-xs font-semibold border {badge_class}">{data.get('bias', 'N/A')}</span>
                 </div>
+
+                <!-- Setup Quality Grading Badge -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mb-5 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-slate-400 block uppercase tracking-wider">Setup Quality Grade</span>
+                        <span class="text-xs text-slate-300 mt-1 block leading-relaxed">{grading.get('confluence_rationale', '')}</span>
+                    </div>
+                    <div class="text-right pl-4">
+                        <span class="text-2xl font-black text-amber-400 block">{grading.get('letter_grade', 'N/A')}</span>
+                        <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">{grading.get('probability_score', '')}</span>
+                    </div>
+                </div>
                 
                 <div class="space-y-4">
                     <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 flex justify-between items-center">
@@ -154,6 +166,6 @@ html_content = f"""<!DOCTYPE html>
 try:
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    print("index.html successfully updated with full institutional breakdown!")
+    print("index.html successfully updated with Trade Grading HUD!")
 except Exception as e:
     print(f"Error writing index.html: {e}")
