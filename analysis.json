@@ -1,0 +1,25 @@
+{
+  "symbol": "EUR/USD",
+  "date": "October 30, 2026",
+  "bias": "Long / Bullish",
+  "setup_type": "Intraday Demand Zone Retracement / Bullish Micro-Flag",
+  "entry": "1.11850 – 1.11930",
+  "sl": "1.11520",
+  "tp": "1.12550",
+  "rrr": "1 : 1.75",
+  "fundamental": {
+    "macro_environment": "EUR/USD trades near the 1.1198 mark, finding relief as immediate political jitters across Europe ease and the US dollar undergoes a consolidation phase.",
+    "driver_dynamics": "Recent central bank rate expectations and cautious US economic data have curbed aggressive dollar upside momentum in the short term. Underlying fundamental divergences between the Federal Reserve and a cautious ECB keep the broader pair restricted within a multi-week horizontal range (1.1130 – 1.1270)."
+  },
+  "technical_top_down": {
+    "d1": "Daily timeframe shows price attempting a stabilization bounce after defending key multi-week support floors near 1.1110 – 1.1126. Broader structure remains range-bound below intermediate moving averages.",
+    "h4": "Price action respects a well-established macro range boundary, carving out higher structural lows after testing the lower boundary and pushing toward mid-range resistance.",
+    "h1": "Short-term structure exhibits a clean bullish recovery sequence over the past day, breaking above minor intraday resistance and creating supportive local demand architecture.",
+    "m15": "Intraday action shows impulsive upward expansion followed by a shallow, orderly pullback into an immediate support zone, setting up a high-probability continuation structure."
+  },
+  "actionable_rules": {
+    "entry_rules": "Look for price to drift lower into the 1.11850 – 1.11930 support cluster during active European or early New York sessions. Confirm entry upon a 15-minute bullish reversal pattern (such as a hammer candle or strong bullish engulfing close off the level).",
+    "exit_management": "Secure 50% partial profits upon testing intermediate 1.12300 resistance, trail the remaining position's stop loss to breakeven, and target the primary objective at 1.12550.",
+    "invalidation_criteria": "A sustained 1-hour candle close below 1.11450 invalidates the short-term bullish continuation setup, pointing to a retest of lower range bounds near 1.1110."
+  }
+}
