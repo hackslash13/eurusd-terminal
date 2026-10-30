@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EUR/USD Professional Analysis Terminal</title>
+    <title>EUR/USD Institutional Analysis Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+    <!-- Header -->
     <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur p-4 flex justify-between items-center">
         <div class="flex items-center space-x-3">
-            <div class="bg-blue-600 text-white p-2 rounded-lg font-bold">EUR/USD</div>
+            <div class="bg-blue-600 text-white px-3 py-1.5 rounded-lg font-bold">EUR/USD</div>
             <h1 class="text-xl font-semibold tracking-tight">Institutional Analysis Terminal</h1>
         </div>
         <div class="text-sm text-slate-400">
@@ -19,61 +20,111 @@
         </div>
     </header>
 
+    <!-- Main Grid -->
     <main class="flex-1 p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto w-full">
-        <!-- Chart Section -->
-        <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col h-[550px]">
-            <div class="p-4 border-b border-slate-800 font-medium flex justify-between items-center">
-                <span>TradingView Chart (OANDA:EURUSD, M15)</span>
-                <span class="text-xs bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded border border-blue-500/20">Active Setup</span>
+        
+        <!-- Left 2 Columns: Chart & Detailed Breakdown -->
+        <div class="lg:col-span-2 space-y-6 flex flex-col">
+            <!-- TradingView Chart -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col h-[500px]">
+                <div class="p-4 border-b border-slate-800 font-medium flex justify-between items-center text-sm">
+                    <span>TradingView Chart (OANDA:EURUSD, M15)</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded border border-blue-500/20">Intraday Demand Zone Retracement / Bullish Micro-Flag</span>
+                </div>
+                <div class="flex-1 w-full h-full bg-slate-950">
+                    <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AEURUSD&interval=15&theme=dark" class="w-full h-full border-0"></iframe>
+                </div>
             </div>
-            <div class="flex-1 w-full h-full bg-slate-950">
-                <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AEURUSD&interval=15&theme=dark" class="w-full h-full border-0"></iframe>
+
+            <!-- Detailed Analysis Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Fundamental Analysis -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-sm font-bold uppercase tracking-wider text-blue-400 mb-3 flex items-center">
+                            <i class="fa-solid fa-globe mr-2"></i> Fundamental Analysis
+                        </h2>
+                        <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                            <p><strong class="text-slate-200">Macro Environment:</strong> EUR/USD trades near the 1.1198 mark, finding relief as immediate political jitters across Europe ease and the US dollar undergoes a consolidation phase.</p>
+                            <p><strong class="text-slate-200">Driver Dynamics:</strong> Recent central bank rate expectations and cautious US economic data have curbed aggressive dollar upside momentum in the short term. Underlying fundamental divergences between the Federal Reserve and a cautious ECB keep the broader pair restricted within a multi-week horizontal range (1.1130 – 1.1270).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actionable Rules & Invalidation -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-sm font-bold uppercase tracking-wider text-amber-400 mb-3 flex items-center">
+                            <i class="fa-solid fa-crosshairs mr-2"></i> Execution & Invalidation
+                        </h2>
+                        <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                            <p><strong class="text-slate-200">Entry Rules:</strong> Look for price to drift lower into the 1.11850 – 1.11930 support cluster during active European or early New York sessions. Confirm entry upon a 15-minute bullish reversal pattern (such as a hammer candle or strong bullish engulfing close off the level).</p>
+                            <p><strong class="text-slate-200">Exit / Management:</strong> Secure 50% partial profits upon testing intermediate 1.12300 resistance, trail the remaining position's stop loss to breakeven, and target the primary objective at 1.12550.</p>
+                            <p><strong class="text-rose-400">Invalidation:</strong> A sustained 1-hour candle close below 1.11450 invalidates the short-term bullish continuation setup, pointing to a retest of lower range bounds near 1.1110.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top-Down Technical Analysis -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-3 flex items-center">
+                    <i class="fa-solid fa-chart-line mr-2"></i> Top-Down Technical Analysis (D1, H4, H1, M15)
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                        <span class="font-bold text-blue-400 block mb-1">D1 (Daily)</span>
+                        <p class="text-slate-300 leading-relaxed">Daily timeframe shows price attempting a stabilization bounce after defending key multi-week support floors near 1.1110 – 1.1126. Broader structure remains range-bound below intermediate moving averages.</p>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                        <span class="font-bold text-purple-400 block mb-1">H4 (4-Hour)</span>
+                        <p class="text-slate-300 leading-relaxed">Price action respects a well-established macro range boundary, carving out higher structural lows after testing the lower boundary and pushing toward mid-range resistance.</p>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                        <span class="font-bold text-amber-400 block mb-1">H1 (1-Hour)</span>
+                        <p class="text-slate-300 leading-relaxed">Short-term structure exhibits a clean bullish recovery sequence over the past day, breaking above minor intraday resistance and creating supportive local demand architecture.</p>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                        <span class="font-bold text-emerald-400 block mb-1">M15 (Execution)</span>
+                        <p class="text-slate-300 leading-relaxed">Intraday action shows impulsive upward expansion followed by a shallow, orderly pullback into an immediate support zone, setting up a high-probability continuation structure.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Trade HUD Panel -->
-        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+        <!-- Right Column: Execution HUD Panel -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between h-fit">
             <div>
-                <div class="flex justify-between items-center mb-4">
+                <div class="flex justify-between items-center mb-6">
                     <h2 class="text-lg font-bold text-slate-200">Execution HUD</h2>
-                    <span class="px-3 py-1 rounded text-xs font-semibold bg-emerald-500/10 text-emerald-400 border-emerald-500/25">Long / Bullish</span>
+                    <span class="px-3 py-1 rounded text-xs font-semibold border bg-emerald-500/10 text-emerald-400 border-emerald-500/25">Long / Bullish</span>
                 </div>
                 
-                <div class="space-y-4 text-sm">
-                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80 flex justify-between">
-                        <span class="text-slate-400">Entry Price</span>
-                        <span class="font-mono font-bold text-slate-100">1.11540</span>
+                <div class="space-y-4">
+                    <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400 text-sm">Entry Price</span>
+                        <span class="font-mono font-bold text-slate-100 text-base">1.11850 – 1.11930</span>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80 flex justify-between">
-                        <span class="text-slate-400">Stop Loss (SL)</span>
-                        <span class="font-mono font-bold text-rose-400">1.11240</span>
+                    <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400 text-sm">Stop Loss (SL)</span>
+                        <span class="font-mono font-bold text-rose-400 text-base">1.11520</span>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80 flex justify-between">
-                        <span class="text-slate-400">Take Profit (TP)</span>
-                        <span class="font-mono font-bold text-emerald-400">1.12040</span>
+                    <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400 text-sm">Take Profit (TP)</span>
+                        <span class="font-mono font-bold text-emerald-400 text-base">1.12550</span>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80 flex justify-between">
-                        <span class="text-slate-400">Risk-to-Reward</span>
-                        <span class="font-mono font-bold text-blue-400">1 : 1.67</span>
-                    </div>
-                </div>
-
-                <div class="mt-6 space-y-3">
-                    <div>
-                        <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Fundamental Outlook</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">Recent macroeconomic data pointing to resilient regional growth and softer US inflation prints are providing fundamental tailwinds for the shared currency against the dollar.</p>
-                    </div>
-                    <div>
-                        <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Technical Structure</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">Price is holding above key daily demand zones with H4 higher lows forming. M15 shows bullish impulse continuation following a clean test of local support.</p>
+                    <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400 text-sm">Risk-to-Reward</span>
+                        <span class="font-mono font-bold text-blue-400 text-base">1 : 1.75</span>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-slate-800 text-center text-xs text-slate-500">
-                Auto-synced daily via GitHub Actions (Synced: 2026-10-30 07:12:30 UTC)
+            <div class="mt-8 pt-4 border-t border-slate-800 text-center text-xs text-slate-500">
+                Synced from analysis.json via GitHub Actions
             </div>
         </div>
+
     </main>
 </body>
 </html>
