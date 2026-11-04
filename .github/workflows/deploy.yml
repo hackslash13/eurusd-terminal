@@ -1,4 +1,4 @@
-name: Update Trade Analysis & Deploy Terminal
+name: Deploy EURUSD Terminal
 
 on:
   repository_dispatch:
@@ -7,8 +7,11 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -16,14 +19,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Write JSON from Payload to analysis.json
+      - name: Extract and Save analysis.json
         run: |
-          echo '${{ toJson(github.event.client_payload) }}' > analysis.json
+          echo '${{ toJson(github.event.client_payload.analysis) }}' > analysis.json
 
-      - name: Run HTML Generator Script
+      - name: Execute Python Generator
         run: python generate_terminal.py
 
-      - name: Commit and Push Changes
+      - name: Commit and Push Updates
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
