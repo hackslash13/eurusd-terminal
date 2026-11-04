@@ -1,32 +1,30 @@
 {
-  "analysis": {
-    "actionable_rules": {
-      "entry_rules": "Allow price to retrace upward into the 1.12100 to 1.12200 resistance zone during early European session hours and confirm short entry upon a 15 minute bearish rejection candle.",
-      "exit_management": "Secure 100 percent of profits at the fixed target of 1.11625 to lock in the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.11850.",
-      "invalidation_criteria": "A decisive 1 hour candle close above 1.12450 invalidates this bearish setup signaling a breakout of local resistance and a shift toward short term bullish continuation."
-    },
-    "bias": "Short or Bearish",
-    "date": "November 04, 2026",
-    "entry": "1.12100 to 1.12200",
-    "fundamental": {
-      "driver_dynamics": "Central bank policy expectations continue to favor the Federal Reserve while regional European growth concerns keep relief rallies capped and vulnerable to selling.",
-      "macro_environment": "EURUSD hovers near 1.1215 facing persistent selling pressure as markets weigh ongoing Eurozone fiscal risks against a resilient US dollar."
-    },
-    "rrr": "1 to 1.5",
-    "setup_type": "Key Overhead Supply Rejection or Bearish Continuation",
-    "sl": "1.12450",
-    "symbol": "EURUSD",
-    "technical_top_down": {
-      "d1": "Daily timeframe remains capped below intermediate moving averages and resistance zones maintaining downward pressure within a broader corrective structure.",
-      "h1": "1 hour structure exhibits minor corrective advances that stall into local order block resistance confirming seller dominance.",
-      "h4": "The 4 hour chart shows price stalling near local supply zones around 1.1215 and failing to sustain upside momentum against heavy institutional selling.",
-      "m15": "The 15 minute execution chart reveals an upward corrective sweep into an immediate supply cluster setting up an optimal bearish continuation pattern."
-    },
-    "tp": "1.11625",
-    "trade_grading": {
-      "confluence_rationale": "Strong alignment with macro dollar demand and Eurozone political and fiscal concerns combined with D1 and H4 overhead resistance rejection allowing a precise M15 structural short entry with a fixed one to one point five risk to reward ratio.",
-      "letter_grade": "A+",
-      "probability_score": "88 percent"
-    }
+  "actionable_rules": {
+    "entry_rules": "Allow price to retrace upward into the 1.12100 to 1.12200 resistance zone during early European session hours and confirm short entry upon a 15 minute bearish rejection candle.",
+    "exit_management": "Secure 100 percent of profits at the fixed target of 1.11625 to lock in the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.11850.",
+    "invalidation_criteria": "A decisive 1 hour candle close above 1.12450 invalidates this bearish setup signaling a breakout of local resistance and a shift toward short term bullish continuation."
+  },
+  "bias": "Short or Bearish",
+  "date": "November 04, 2026",
+  "entry": "1.12100 to 1.12200",
+  "fundamental": {
+    "driver_dynamics": "Central bank policy expectations continue to favor the Federal Reserve while regional European growth concerns keep relief rallies capped and vulnerable to selling.",
+    "macro_environment": "EURUSD hovers near 1.1215 facing persistent selling pressure as markets weigh ongoing Eurozone fiscal risks against a resilient US dollar."
+  },
+  "rrr": "1 to 1.5",
+  "setup_type": "Key Overhead Supply Rejection or Bearish Continuation",
+  "sl": "1.12450",
+  "symbol": "EURUSD",
+  "technical_top_down": {
+    "d1": "Daily timeframe remains capped below intermediate moving averages and resistance zones maintaining downward pressure within a broader corrective structure.",
+    "h1": "1 hour structure exhibits minor corrective advances that stall into local order block resistance confirming seller dominance.",
+    "h4": "The 4 hour chart shows price stalling near local supply zones around 1.1215 and failing to sustain upside momentum against heavy institutional selling.",
+    "m15": "The 15 minute execution chart reveals an upward corrective sweep into an immediate supply cluster setting up an optimal bearish continuation pattern."
+  },
+  "tp": "1.11625",
+  "trade_grading": {
+    "confluence_rationale": "Strong alignment with macro dollar demand and Eurozone political and fiscal concerns combined with D1 and H4 overhead resistance rejection allowing a precise M15 structural short entry with a fixed one to one point five risk to reward ratio.",
+    "letter_grade": "A+",
+    "probability_score": "88 percent"
   }
 }
