@@ -1,30 +1,30 @@
 {
   "actionable_rules": {
-    "entry_rules": "Allow price to retrace upward into the 1.12100 to 1.12200 resistance zone during early European session hours and confirm short entry upon a 15 minute bearish rejection candle.",
-    "exit_management": "Secure 100 percent of profits at the fixed target of 1.11625 to lock in the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.11850.",
-    "invalidation_criteria": "A decisive 1 hour candle close above 1.12450 invalidates this bearish setup signaling a breakout of local resistance and a shift toward short term bullish continuation."
+    "entry_rules": "Allow price to drift lower into the 1.12150 to 1.12240 support cluster during early European session hours and confirm execution upon a 15 minute bullish reversal candle close.",
+    "exit_management": "Secure 100 percent of profits at the fixed target of 1.12575 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price reaches 1.12380.",
+    "invalidation_criteria": "A sustained 1 hour candle close below 1.11850 invalidates this short term bullish continuation setup signaling a structural failure and a renewed rotation back toward range lows."
   },
-  "bias": "Short or Bearish",
-  "date": "November 04, 2026",
-  "entry": "1.12100 to 1.12200",
+  "bias": "Long or Bullish",
+  "date": "November 05, 2026",
+  "entry": "1.12150 to 1.12240",
   "fundamental": {
-    "driver_dynamics": "Central bank policy expectations continue to favor the Federal Reserve while regional European growth concerns keep relief rallies capped and vulnerable to selling.",
-    "macro_environment": "EURUSD hovers near 1.1215 facing persistent selling pressure as markets weigh ongoing Eurozone fiscal risks against a resilient US dollar."
+    "driver_dynamics": "While the Federal Reserve maintains a cautious pace on rate adjustments recent European central bank commentary keeps the single currency stable above key multi-week lows.",
+    "macro_environment": "EURUSD trades near 1.1235 finding corrective support as recent US economic data softens and caps immediate dollar momentum."
   },
   "rrr": "1 to 1.5",
-  "setup_type": "Key Overhead Supply Rejection or Bearish Continuation",
-  "sl": "1.12450",
+  "setup_type": "Support Bounce and Intraday Bullish Continuation",
+  "sl": "1.11890",
   "symbol": "EURUSD",
   "technical_top_down": {
-    "d1": "Daily timeframe remains capped below intermediate moving averages and resistance zones maintaining downward pressure within a broader corrective structure.",
-    "h1": "1 hour structure exhibits minor corrective advances that stall into local order block resistance confirming seller dominance.",
-    "h4": "The 4 hour chart shows price stalling near local supply zones around 1.1215 and failing to sustain upside momentum against heavy institutional selling.",
-    "m15": "The 15 minute execution chart reveals an upward corrective sweep into an immediate supply cluster setting up an optimal bearish continuation pattern."
+    "d1": "Daily timeframe shows price attempting a stabilization bounce after successfully defending the support floor around 1.1180 confirming range support.",
+    "h1": "1 hour price action has flipped structure upward establishing higher intraday lows and building a solid supportive demand shelf.",
+    "h4": "The 4 hour chart has carved out a recovery bounce off local lows pushing through initial resistance and advancing toward the 1.1250 region.",
+    "m15": "The 15 minute execution chart displays impulsive upward expansion followed by an orderly low volume retracement into an immediate micro demand cluster."
   },
-  "tp": "1.11625",
+  "tp": "1.12575",
   "trade_grading": {
-    "confluence_rationale": "Strong alignment with macro dollar demand and Eurozone political and fiscal concerns combined with D1 and H4 overhead resistance rejection allowing a precise M15 structural short entry with a fixed one to one point five risk to reward ratio.",
+    "confluence_rationale": "Strong multi-session defense of the 1.1180 to 1.1195 macro support floor combined with H1 structural higher lows and an orderly M15 pullback into an active demand cluster with a fixed one to one point five risk to reward ratio.",
     "letter_grade": "A+",
-    "probability_score": "88 percent"
+    "probability_score": "89 percent"
   }
 }
