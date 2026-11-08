@@ -1,30 +1,30 @@
 {
   "actionable_rules": {
-    "entry_rules": "Allow price to drift downward into the 1.11850 to 1.11940 support cluster during early European session hours and confirm execution upon a 15 minute bullish reversal candle close.",
-    "exit_management": "Secure 100 percent of profits at the fixed target of 1.12275 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price reaches 1.12080.",
-    "invalidation_criteria": "A sustained 1 hour candle close below 1.11590 invalidates this bullish continuation setup signaling structural failure and a renewed move toward range lows."
+    "entry_rules": "Allow price to retrace upward into the 1.11650 to 1.11750 resistance zone during early session hours and confirm short entry upon a 15 minute bearish rejection candle.",
+    "exit_management": "Secure 100 percent of profits at the fixed target of 1.11275 to lock in the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.11400.",
+    "invalidation_criteria": "A decisive 1 hour candle close above 1.12000 invalidates this bearish setup signaling a breakout of local resistance and a shift toward short term bullish continuation."
   },
-  "bias": "Long or Bullish",
-  "date": "November 07, 2026",
-  "entry": "1.11850 to 1.11940",
+  "bias": "Short or Bearish",
+  "date": "November 08, 2026",
+  "entry": "1.11650 to 1.11750",
   "fundamental": {
-    "driver_dynamics": "While global central bank rate paths remain data dependent recent European macroeconomic indicators have stabilized enough to prevent sustained downside continuation.",
-    "macro_environment": "EURUSD trades near 1.1205 finding steady corrective demand as recent macroeconomic data releases out of the United States show signs of cooling momentum."
+    "driver_dynamics": "Central bank policy expectations continue to favor a cautious Federal Reserve stance while European economic uncertainty keeps upside momentum subdued and vulnerable to institutional selling.",
+    "macro_environment": "EURUSD hovers near 1.1148 facing persistent downward pressure as broader Eurozone fiscal headwinds and regional energy risks cap recovery rallies."
   },
   "rrr": "1 to 1.5",
-  "setup_type": "Support Defense and Intraday Bullish Rebound",
-  "sl": "1.11590",
+  "setup_type": "Overhead Resistance Rejection and Intraday Bearish Continuation",
+  "sl": "1.12000",
   "symbol": "EURUSD",
   "technical_top_down": {
-    "d1": "Daily timeframe shows price attempting a stabilization bounce after successfully defending major support around the 1.1160 region.",
-    "h1": "1 hour structure has shifted into a minor uptrend printing higher lows and establishing immediate support above 1.1175.",
-    "h4": "The 4 hour chart has carved out a consolidation shelf following a corrective pullback indicating exhaustion among active sellers.",
-    "m15": "The 15 minute execution chart displays impulsive buying pressure followed by a low volume retracement into an immediate demand cluster."
+    "d1": "Daily timeframe remains capped below intermediate resistance zones maintaining heavy downside gravitational pull toward foundational demand basins.",
+    "h1": "1 hour structure exhibits minor corrective advances that stall into local order block resistance confirming active seller control.",
+    "h4": "The 4 hour chart shows price stalling near local supply zones around 1.1180 and failing to sustain upside momentum against active institutional selling.",
+    "m15": "The 15 minute execution chart reveals an upward corrective sweep into an immediate supply cluster setting up an optimal bearish continuation pattern."
   },
-  "tp": "1.12275",
+  "tp": "1.11275",
   "trade_grading": {
-    "confluence_rationale": "Strong multi-session defense of the 1.1160 to 1.1175 support zone combined with H1 higher low structure and an orderly M15 pullback into an active demand cluster with a fixed one to one point five risk to reward ratio.",
+    "confluence_rationale": "Strong alignment with multi-layered D1 and H4 institutional supply caps near 1.1180 to 1.1200 combined with short-term H1 and M15 corrective exhaustion allowing a precise M15 structural short entry with a fixed one to one point five risk to reward ratio.",
     "letter_grade": "A+",
-    "probability_score": "89 percent"
+    "probability_score": "90 percent"
   }
 }
