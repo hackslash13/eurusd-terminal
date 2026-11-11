@@ -1,30 +1,30 @@
 {
   "actionable_rules": {
-    "entry_rules": "Allow price to retrace upward into the 1.12050 to 1.12150 resistance zone during early session hours and confirm short entry upon a 15 minute bearish rejection candle.",
-    "exit_management": "Secure 100 percent of profits at the fixed target of 1.11525 to lock in the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.11800.",
-    "invalidation_criteria": "A decisive 1 hour candle close above 1.12400 invalidates this bearish setup signaling a breakout of local resistance and a shift toward short term bullish continuation."
+    "entry_rules": "Allow price to drift downward into the 1.11950 to 1.12040 support cluster during early European session hours and confirm execution upon a 15 minute bullish reversal candle close.",
+    "exit_management": "Secure 100 percent of profits at the fixed target of 1.12375 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price reaches 1.12180.",
+    "invalidation_criteria": "A sustained 1 hour candle close below 1.11690 invalidates this bullish continuation setup signaling structural failure and a renewed move toward range lows."
   },
-  "bias": "Short or Bearish",
-  "date": "November 10, 2026",
-  "entry": "1.12050 to 1.12150",
+  "bias": "Long or Bullish",
+  "date": "November 11, 2026",
+  "entry": "1.11950 to 1.12040",
   "fundamental": {
-    "driver_dynamics": "Diverging monetary policy momentum and persistent US economic outperformance keep upside moves vulnerable to swift institutional supply rejections.",
-    "macro_environment": "EURUSD trades near 1.1219 under persistent downward pressure as broader dollar resilience and cautious central bank expectations cap recovery rallies."
+    "driver_dynamics": "While global central bank rate paths remain data dependent recent European macroeconomic indicators have stabilized enough to prevent sustained downside continuation.",
+    "macro_environment": "EURUSD trades near 1.1215 finding steady corrective demand as recent macroeconomic data releases out of the United States show signs of cooling momentum."
   },
   "rrr": "1 to 1.5",
-  "setup_type": "Overhead Supply Rejection and Intraday Bearish Continuation",
-  "sl": "1.12400",
+  "setup_type": "Support Defense and Intraday Bullish Rebound",
+  "sl": "1.11690",
   "symbol": "EURUSD",
   "technical_top_down": {
-    "d1": "Daily timeframe remains capped below intermediate resistance zones maintaining heavy downside structural pressure.",
-    "h1": "1 hour structure exhibits minor corrective advances that stall into local order block resistance confirming active seller control.",
-    "h4": "The 4 hour chart shows price stalling near local supply zones around 1.1225 and failing to sustain upside momentum against active selling.",
-    "m15": "The 15 minute execution chart reveals an upward corrective sweep into an immediate supply cluster setting up an optimal bearish continuation pattern."
+    "d1": "Daily timeframe shows price attempting a stabilization bounce after successfully defending major support around the 1.1170 region.",
+    "h1": "1 hour structure has shifted into a minor uptrend printing higher lows and establishing immediate support above 1.1185.",
+    "h4": "The 4 hour chart has carved out a consolidation shelf following a corrective pullback indicating exhaustion among active sellers.",
+    "m15": "The 15 minute execution chart displays impulsive buying pressure followed by a low volume retracement into an immediate demand cluster."
   },
-  "tp": "1.11525",
+  "tp": "1.12375",
   "trade_grading": {
-    "confluence_rationale": "Strong alignment with multi-session D1 and H4 overhead resistance barriers near 1.1220 to 1.1235 combined with H1 and M15 corrective exhaustion allowing a precise M15 structural short entry with a fixed one to one point five risk to reward ratio.",
+    "confluence_rationale": "Strong multi-session defense of the 1.1170 to 1.1185 support floor combined with H1 higher low structure and an orderly M15 pullback into an active demand cluster with a fixed one to one point five risk to reward ratio.",
     "letter_grade": "A+",
-    "probability_score": "91 percent"
+    "probability_score": "90 percent"
   }
 }
