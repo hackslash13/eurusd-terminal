@@ -1,30 +1,30 @@
 {
   "actionable_rules": {
-    "entry_rules": "Allow price to drift downward into the 1.11950 to 1.12040 support cluster during early European session hours and confirm execution upon a 15 minute bullish reversal candle close.",
-    "exit_management": "Secure 100 percent of profits at the fixed target of 1.12375 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price reaches 1.12180.",
-    "invalidation_criteria": "A sustained 1 hour candle close below 1.11690 invalidates this bullish continuation setup signaling structural failure and a renewed move toward range lows."
+    "entry_rules": "Allow price to retrace upward into the 1.10980 to 1.11070 resistance zone during European session hours and confirm short entry upon a 15 minute bearish rejection candle close.",
+    "exit_management": "Secure 100 percent of profits at the fixed target of 1.10575 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.10780.",
+    "invalidation_criteria": "A sustained 1 hour candle close above 1.11350 invalidates this bearish continuation setup signaling a failed breakout and a short term relief bounce."
   },
-  "bias": "Long or Bullish",
-  "date": "November 11, 2026",
-  "entry": "1.11950 to 1.12040",
+  "bias": "Short or Bearish",
+  "date": "November 12, 2026",
+  "entry": "1.10980 to 1.11070",
   "fundamental": {
-    "driver_dynamics": "While global central bank rate paths remain data dependent recent European macroeconomic indicators have stabilized enough to prevent sustained downside continuation.",
-    "macro_environment": "EURUSD trades near 1.1215 finding steady corrective demand as recent macroeconomic data releases out of the United States show signs of cooling momentum."
+    "driver_dynamics": "Escalating US inflation concerns and rising oil prices reinforce hawkish central bank sentiment while European economic growth indicators remain subdued.",
+    "macro_environment": "EURUSD trades near 1.1093 under intense downward pressure as renewed expectations of aggressive Federal Reserve monetary tightening strengthen the US dollar."
   },
   "rrr": "1 to 1.5",
-  "setup_type": "Support Defense and Intraday Bullish Rebound",
-  "sl": "1.11690",
+  "setup_type": "Support Breakdown and Intraday Bearish Continuation",
+  "sl": "1.11350",
   "symbol": "EURUSD",
   "technical_top_down": {
-    "d1": "Daily timeframe shows price attempting a stabilization bounce after successfully defending major support around the 1.1170 region.",
-    "h1": "1 hour structure has shifted into a minor uptrend printing higher lows and establishing immediate support above 1.1185.",
-    "h4": "The 4 hour chart has carved out a consolidation shelf following a corrective pullback indicating exhaustion among active sellers.",
-    "m15": "The 15 minute execution chart displays impulsive buying pressure followed by a low volume retracement into an immediate demand cluster."
+    "d1": "Daily timeframe exhibits a decisive breakdown below multi-month support clusters toward 1.1090 confirming dominant seller control.",
+    "h1": "1 hour structure remains firmly bearish with lower highs and lower lows respecting steep downward moving average resistance.",
+    "h4": "The 4 hour chart shows heavy downside momentum slicing through prior consolidation ranges with minimal buying interest.",
+    "m15": "The 15 minute execution chart reveals a minor corrective pullback into former horizontal support now acting as active overhead supply."
   },
-  "tp": "1.12375",
+  "tp": "1.10575",
   "trade_grading": {
-    "confluence_rationale": "Strong multi-session defense of the 1.1170 to 1.1185 support floor combined with H1 higher low structure and an orderly M15 pullback into an active demand cluster with a fixed one to one point five risk to reward ratio.",
+    "confluence_rationale": "Strong alignment with aggressive Federal Reserve rate expectations and persistent US dollar strength breaking key D1 and H4 support zones near 1.1100 combined with clean M15 corrective retests for continuation with a fixed one to one point five risk to reward ratio.",
     "letter_grade": "A+",
-    "probability_score": "90 percent"
+    "probability_score": "91 percent"
   }
 }
