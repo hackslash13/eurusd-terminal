@@ -1,30 +1,30 @@
 {
   "actionable_rules": {
-    "entry_rules": "Allow price to retrace upward into the 1.10980 to 1.11070 resistance zone during European session hours and confirm short entry upon a 15 minute bearish rejection candle close.",
-    "exit_management": "Secure 100 percent of profits at the fixed target of 1.10575 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.10780.",
-    "invalidation_criteria": "A sustained 1 hour candle close above 1.11350 invalidates this bearish continuation setup signaling a failed breakout and a short term relief bounce."
+    "entry_rules": "Allow price to retrace upward into the 1.10650 to 1.10750 resistance zone during European session hours and confirm short entry upon a 15 minute bearish rejection candle close.",
+    "exit_management": "Secure 100 percent of profits at the fixed target of 1.10125 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.10420.",
+    "invalidation_criteria": "A sustained 1 hour candle close above 1.11000 invalidates this bearish continuation setup signaling a failed breakdown and a short term relief bounce."
   },
   "bias": "Short or Bearish",
-  "date": "November 12, 2026",
-  "entry": "1.10980 to 1.11070",
+  "date": "November 13, 2026",
+  "entry": "1.10650 to 1.10750",
   "fundamental": {
-    "driver_dynamics": "Escalating US inflation concerns and rising oil prices reinforce hawkish central bank sentiment while European economic growth indicators remain subdued.",
-    "macro_environment": "EURUSD trades near 1.1093 under intense downward pressure as renewed expectations of aggressive Federal Reserve monetary tightening strengthen the US dollar."
+    "driver_dynamics": "Persistent macroeconomic divergence and strong US dollar demand reinforce institutional selling pressure keeping downside continuation favored across major timeframes.",
+    "macro_environment": "EURUSD trades near 1.1058 under heavy downward pressure as resilient US economic conditions and hawkish rate expectations contrast with sluggish European growth and cautious central bank policy."
   },
   "rrr": "1 to 1.5",
   "setup_type": "Support Breakdown and Intraday Bearish Continuation",
-  "sl": "1.11350",
+  "sl": "1.11000",
   "symbol": "EURUSD",
   "technical_top_down": {
-    "d1": "Daily timeframe exhibits a decisive breakdown below multi-month support clusters toward 1.1090 confirming dominant seller control.",
-    "h1": "1 hour structure remains firmly bearish with lower highs and lower lows respecting steep downward moving average resistance.",
-    "h4": "The 4 hour chart shows heavy downside momentum slicing through prior consolidation ranges with minimal buying interest.",
+    "d1": "Daily timeframe confirms a decisive breakdown toward multi-month lows below 1.1060 maintaining dominant seller control within the broader downtrend.",
+    "h1": "1 hour structure remains firmly bearish printing lower highs and lower lows below dynamic moving average resistance.",
+    "h4": "The 4 hour chart shows sustained downside momentum slicing through prior support clusters with minimal buying interest.",
     "m15": "The 15 minute execution chart reveals a minor corrective pullback into former horizontal support now acting as active overhead supply."
   },
-  "tp": "1.10575",
+  "tp": "1.10125",
   "trade_grading": {
-    "confluence_rationale": "Strong alignment with aggressive Federal Reserve rate expectations and persistent US dollar strength breaking key D1 and H4 support zones near 1.1100 combined with clean M15 corrective retests for continuation with a fixed one to one point five risk to reward ratio.",
+    "confluence_rationale": "Strong alignment with persistent US dollar strength and restrictive Federal Reserve expectations breaking major D1 and H4 support zones near 1.1060 combined with clean M15 corrective retests into overhead supply for continuation with a fixed one to one point five risk to reward ratio.",
     "letter_grade": "A+",
-    "probability_score": "91 percent"
+    "probability_score": "92 percent"
   }
 }
