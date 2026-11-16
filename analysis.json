@@ -1,29 +1,29 @@
 {
   "actionable_rules": {
-    "entry_rules": "Allow price to retrace upward into the 1.10180 to 1.10270 resistance zone during early session hours and confirm short entry upon a 15 minute bearish rejection candle close.",
-    "exit_management": "Secure 100 percent of profits at the fixed target of 1.09785 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.09980.",
-    "invalidation_criteria": "A sustained 1 hour candle close above 1.10550 invalidates this bearish continuation setup signaling a failed breakdown and a short term relief bounce."
+    "entry_rules": "Allow price to retrace upward into the 1.10350 to 1.10450 resistance zone during European session hours and confirm short entry upon a 15 minute bearish rejection candle close.",
+    "exit_management": "Secure 100 percent of profits at the fixed target of 1.09725 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.10100.",
+    "invalidation_criteria": "A sustained 1 hour candle close above 1.10800 invalidates this bearish continuation setup signaling a stronger short covering relief rally toward intermediate resistance."
   },
   "bias": "Short or Bearish",
-  "date": "November 15, 2026",
-  "entry": "1.10180 to 1.10270",
+  "date": "November 16, 2026",
+  "entry": "1.10350 to 1.10450",
   "fundamental": {
-    "driver_dynamics": "Hawkish monetary policy expectations and strong US treasury yields reinforce dollar demand keeping upside recovery attempts vulnerable to aggressive institutional supply rejections.",
-    "macro_environment": "EURUSD trades near 1.1023 under steady downward pressure as resilient US economic data and persistent inflationary pressures contrast with sluggish Eurozone growth and cautious central bank policy."
+    "driver_dynamics": "Aggressive US monetary policy pricing and safe haven inflows reinforce broad dollar strength while mixed Eurozone economic indicators fail to attract meaningful sustained buyers.",
+    "macro_environment": "EURUSD trades near 1.1022 under persistent downward pressure as firmer US dollar demand and heightened Fed rate expectations keep bears in control near year to date lows."
   },
   "rrr": "1 to 1.5",
   "setup_type": "Overhead Supply Rejection and Intraday Bearish Continuation",
-  "sl": "1.10550",
+  "sl": "1.10800",
   "symbol": "EURUSD",
   "technical_top_down": {
-    "d1": "Daily timeframe exhibits sustained downside pressure below intermediate moving averages maintaining a clear bearish market structure.",
-    "h1": "1 hour structure remains firmly bearish printing lower highs and lower lows below dynamic resistance levels.",
-    "h4": "The 4 hour chart shows price consolidating near multi-week lows following an impulsive breakdown with minimal buying interest.",
-    "m15": "The 15 minute execution chart reveals a minor corrective retracement into former horizontal support now acting as active overhead supply."
+    "d1": "Daily timeframe exhibits a dominant short term downtrend with price trading below key moving averages and pressing toward the 1.1000 level.",
+    "h1": "1 hour structure remains heavily bearish printing lower highs and lower lows with momentum indicators reflecting persistent selling pressure.",
+    "h4": "The 4 hour chart shows repeated unsuccessful attempts to clear overhead resistance near the 200 period EMA and horizontal supply keeping the near term technical bias firmly lower.",
+    "m15": "The 15 minute execution chart reveals a shallow corrective bounce into former horizontal breakdown support now acting as active overhead supply."
   },
-  "tp": "1.09785",
+  "tp": "1.09725",
   "trade_grading": {
-    "confluence_rationale": "Strong alignment with persistent US dollar strength and cautious Federal Reserve rate expectations breaking key D1 and H4 support levels near 1.1025 combined with clean M15 corrective retests into overhead supply for continuation with a fixed one to one point five risk to reward ratio.",
+    "confluence_rationale": "Strong alignment with persistent US dollar strength and firmer Federal Reserve policy expectations driving EURUSD lower toward the 1.1000 psychological handle combined with clean M15 corrective retracements into active overhead supply for a fixed one to one point five risk to reward ratio.",
     "letter_grade": "A+",
     "probability_score": "92 percent"
   }
