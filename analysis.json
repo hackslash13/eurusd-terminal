@@ -1,29 +1,29 @@
 {
   "actionable_rules": {
-    "entry_rules": "Allow price to retrace upward into the 1.10150 to 1.10250 resistance zone during European session hours and confirm short entry upon a 15 minute bearish rejection candle close.",
-    "exit_management": "Secure 100 percent of profits at the fixed target of 1.09575 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.09880.",
-    "invalidation_criteria": "A sustained 1 hour candle close above 1.10600 invalidates this bearish continuation setup signaling a stronger short covering relief rally toward intermediate resistance."
+    "entry_rules": "Allow price to retrace upward into the 1.09880 to 1.09970 resistance zone during European session hours and confirm short entry upon a 15 minute bearish rejection candle close.",
+    "exit_management": "Secure 100 percent of profits at the fixed target of 1.09235 to maintain the exact one to one point five risk to reward ratio and adjust stop loss to breakeven once price drops below 1.09580.",
+    "invalidation_criteria": "A sustained 1 hour candle close above 1.10300 invalidates this bearish continuation setup signaling a stronger short covering relief rally toward intermediate resistance."
   },
   "bias": "Short or Bearish",
-  "date": "November 17, 2026",
-  "entry": "1.10150 to 1.10250",
+  "date": "November 18, 2026",
+  "entry": "1.09880 to 1.09970",
   "fundamental": {
-    "divergence_dynamics": "Widening monetary policy expectations and sticky US inflation metrics keep the euro under persistent selling pressure near multi-week lows.",
-    "macro_environment": "EURUSD trades near 1.1008 under heavy downward pressure as robust US economic data surprises and rebounding Treasury yields sustain broad dollar demand."
+    "divergence_dynamics": "Widening monetary policy expectations and sticky US inflation metrics keep the euro under persistent selling pressure below the key 1.1000 breakdown level.",
+    "macro_environment": "EURUSD trades near 1.0982 under heavy downward pressure as robust US economic data surprises and rebounding Treasury yields sustain broad dollar demand."
   },
   "rrr": "1 to 1.5",
   "setup_type": "Overhead Supply Rejection and Intraday Bearish Continuation",
-  "sl": "1.10600",
+  "sl": "1.10300",
   "symbol": "EURUSD",
   "technical_top_down": {
-    "d1": "Daily timeframe exhibits a dominant bearish trajectory pressing firmly against the 1.1000 support barrier with sellers maintaining control.",
+    "d1": "Daily timeframe exhibits a dominant bearish trajectory pressing firmly below the 1.1000 support barrier with sellers maintaining firm control.",
     "h1": "1 hour structure remains firmly bearish printing lower highs and lower lows below descending moving average barriers.",
-    "h4": "The 4 hour chart shows price consolidating below broken support zones that now function as heavy institutional resistance.",
+    "h4": "The 4 hour chart shows price consolidating below broken support zones that now function as heavy institutional resistance near 1.1000.",
     "m15": "The 15 minute execution chart reveals a shallow corrective bounce into former horizontal breakdown support now acting as active overhead supply."
   },
-  "tp": "1.09575",
+  "tp": "1.09235",
   "trade_grading": {
-    "confluence_rationale": "Strong alignment with persistent US dollar strength and resilient Treasury yields testing the 1.1000 psychological handle on D1 combined with clean M15 corrective retests into active overhead supply for a fixed one to one point five risk to reward ratio.",
+    "confluence_rationale": "Strong alignment with persistent US dollar strength and robust Treasury yields breaking below the 1.1000 psychological handle on D1 combined with clean M15 corrective retests into active overhead supply for a fixed one to one point five risk to reward ratio.",
     "letter_grade": "A+",
     "probability_score": "93 percent"
   }
