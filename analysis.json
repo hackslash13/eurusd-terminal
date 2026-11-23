@@ -1,30 +1,30 @@
 {
   "actionable_rules": {
-    "entry_rules": "Wait for price to retrace into the 1.09780 to 1.09870 supply zone once market liquidity resumes and enter short on a confirmed 15 minute bearish rejection candle close.",
-    "exit_management": "Close the full position at 1.09280 to capture the exact one to one point five risk to reward ratio and move stop loss to breakeven once price reaches 1.09550.",
-    "invalidation_criteria": "A sustained 1 hour candle close above 1.10100 invalidates this short setup signaling a deeper corrective recovery toward higher resistance levels."
+    "entry_rules": "Wait for price to retrace into the 1.10050 to 1.10150 supply zone ahead of or during early European session liquidity and enter short on a confirmed 15 minute bearish rejection candle close.",
+    "exit_management": "Close the full position at 1.09475 to capture the exact one to one point five risk to reward ratio and move stop loss to breakeven once price moves below 1.09750.",
+    "invalidation_criteria": "A sustained 1 hour candle close above 1.10400 invalidates this short setup signaling a deeper corrective recovery toward higher resistance levels."
   },
   "bias": "Short or Bearish",
-  "date": "November 22, 2026",
-  "entry": "1.09780 to 1.09870",
+  "date": "November 23, 2026",
+  "entry": "1.10050 to 1.10150",
   "fundamental": {
-    "driver_dynamics": "Divergent central bank policy expectations and elevated US Treasury yields keep the US dollar firm near multi-month highs while political and economic uncertainty in Europe weighs on the single currency.",
-    "macro_environment": "EURUSD holds near 1.0968 under persistent downward pressure as resilient US economic growth, capital inflows into US assets, and hawkish Federal Reserve commentary support dollar demand against European growth and fiscal headwinds."
+    "driver_dynamics": "Market pricing around potential December Federal Reserve rate increases continues to support US dollar demand while trading below key moving averages keeps Eurozone recovery attempts capped.",
+    "macro_environment": "EURUSD trades near 1.0997 after edging higher from recent lows around 1.0971 while remaining under broader bearish pressure as the US Dollar Index presses toward 104.00 for a fourth consecutive week."
   },
   "rrr": "1 to 1.5",
   "setup_type": "Overhead Supply Rejection and Intraday Bearish Continuation",
-  "sl": "1.10100",
+  "sl": "1.10400",
   "symbol": "EURUSD",
   "technical_top_down": {
-    "d1": "Daily timeframe remains firmly bearish below key moving averages and below the 1.1000 breakdown region with price consolidating near 1.0968 under seller control.",
-    "h1": "1 hour price action reflects downward structural pressure with bounces stalling beneath local supply zones and moving average resistance.",
-    "h4": "The 4 hour chart shows lower highs and lower lows with overhead supply capping relief advances below dynamic resistance.",
-    "m15": "The 15 minute execution chart displays a minor corrective recovery into an immediate supply cluster setting up a bearish continuation entry when market liquidity resumes."
+    "d1": "Daily timeframe maintains a dominant bearish downtrend well below earlier highs and broken support below 1.1100 with sellers retaining macro control.",
+    "h1": "1 hour price action shows a short-term corrective bounce pushing toward 1.0997 while remaining below dynamic resistance and prior breakdown levels.",
+    "h4": "The 4 hour chart reflects lower highs and lower lows below descending resistance with price testing near the 1.1000 handle after recent consolidation.",
+    "m15": "The 15 minute execution chart displays intraday upward recovery momentum approaching a supply cluster near 1.10050 to 1.10150 ahead of European session liquidity."
   },
-  "tp": "1.09280",
+  "tp": "1.09475",
   "trade_grading": {
-    "confluence_rationale": "Strong alignment with broader D1 and H4 bearish structure below the 1.1000 psychological barrier and current price near 1.0968 combined with intraday H1 and M15 supply rejection near 1.09780 to 1.09870 toward the 1.09280 support zone with a fixed one to one point five risk to reward ratio while noting weekend market liquidity closure.",
+    "confluence_rationale": "Strong alignment with broader D1 and H4 bearish structure below the 1.1000 psychological barrier and US dollar strength near 104.00 DXY combined with an intraday bounce toward 1.09973 into overhead supply around 1.10050 to 1.10150 for a bearish continuation setup with a fixed one to one point five risk to reward ratio.",
     "letter_grade": "A",
-    "probability_score": "86 percent"
+    "probability_score": "88 percent"
   }
 }
